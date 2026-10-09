@@ -1,0 +1,588 @@
+/* ============================================================
+   PERPUSTAKAAN NUSANTARA — Design System
+   Menerapkan prinsip: Konsisten, Kontras, Keseimbangan,
+   Ruang Kosong (White Space), Simple, Fokus, Semiotik, Ergonomis
+   ============================================================ */
+
+/* ---------- 1. KONSEN: Design Tokens (konsistensi) ---------- */
+:root {
+  /* Warna */
+  --c-primary: #1f4e79;
+  --c-primary-dark: #163a5b;
+  --c-accent: #e8a33d;
+  --c-accent-dark: #c9861f;
+  --c-bg: #faf9f6;
+  --c-surface: #ffffff;
+  --c-text: #22303f;
+  --c-text-muted: #5c6b7a;
+  --c-border: #e3e0d8;
+  --c-success: #2e7d5b;
+
+  /* Tipografi (skala konsisten) */
+  --f-display: "Georgia", "Times New Roman", serif;
+  --f-body: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --fs-hero: clamp(2rem, 5vw, 3.25rem);
+  --fs-h2: clamp(1.5rem, 3vw, 2rem);
+  --fs-h3: 1.15rem;
+  --fs-base: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.75rem;
+
+  /* Spacing (rhythm untuk white space) */
+  --sp-xs: 0.5rem;
+  --sp-sm: 1rem;
+  --sp-md: 1.5rem;
+  --sp-lg: 2.5rem;
+  --sp-xl: 4rem;
+  --sp-xxl: 6rem;
+
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(31, 78, 121, 0.08);
+  --shadow-md: 0 6px 20px rgba(31, 78, 121, 0.12);
+  --max-w: 1140px;
+}
+
+/* ---------- 2. RESET & DASAR ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--f-body);
+  font-size: var(--fs-base);
+  line-height: 1.7;
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: var(--c-primary); text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  color: var(--c-primary-dark);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+/* ---------- 3. LAYOUT & RUANG KOSONG ---------- */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--sp-md);
+}
+
+.section { padding-block: var(--sp-xxl); }
+.section--tight { padding-block: var(--sp-xl); }
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: var(--sp-lg); /* white space sebelum konten */
+}
+.section-head--center { margin-inline: auto; text-align: center; }
+
+.kicker {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-accent-dark);
+  margin-bottom: var(--sp-xs);
+}
+
+.section-head h2 { font-size: var(--fs-h2); margin-bottom: var(--sp-xs); }
+.section-head p { color: var(--c-text-muted); font-size: 1.05rem; }
+
+/* ---------- 4. Navigasi (ergonomis + konsisten) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-md);
+  min-height: 68px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  font-family: var(--f-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--c-primary-dark);
+}
+
+/* Semiotik: ikon buku melambangkan perpustakaan */
+.brand .brand-icon {
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  background: var(--c-primary);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  list-style: none;
+}
+
+.nav-links a {
+  position: relative;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--c-text);
+  padding-block: 6px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--c-primary); }
+
+/* Fokus + Konsistensi: penanda halaman aktif */
+.nav-links a.active { color: var(--c-primary); }
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 3px;
+  background: var(--c-accent);
+  border-radius: 3px;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1.5px solid var(--c-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--c-primary);
+}
+
+/* ---------- 5. TOMBOL (kontras & ergonomis) ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-xs);
+  padding: 0.8rem 1.6rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font-family: var(--f-body);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+  min-height: 44px; /* ergonomis: target klik minimal 44px */
+}
+
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn:active { transform: translateY(0); }
+
+.btn--primary { background: var(--c-primary); color: #fff; }
+.btn--primary:hover { background: var(--c-primary-dark); }
+
+.btn--accent { background: var(--c-accent); color: var(--c-primary-dark); }
+.btn--accent:hover { background: var(--c-accent-dark); color: #fff; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--c-primary);
+  border-color: var(--c-primary);
+}
+.btn--ghost:hover { background: var(--c-primary); color: #fff; }
+
+:focus-visible {
+  outline: 3px solid var(--c-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- 6. HERO (fokus + komposisi) ---------- */
+.hero {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(232, 163, 61, 0.18), transparent 45%),
+    linear-gradient(160deg, #f4f8fc 0%, #faf9f6 60%);
+  padding-block: var(--sp-xxl);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--sp-xl);
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  margin-bottom: var(--sp-sm);
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--c-accent-dark);
+  border-bottom: 4px solid var(--c-accent);
+}
+
+.hero p {
+  color: var(--c-text-muted);
+  font-size: 1.1rem;
+  max-width: 48ch;
+  margin-bottom: var(--sp-md);
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--sp-sm); }
+
+/* Kartu hero — keseimbangan asimetris dengan blok teks */
+.hero-card {
+  background: var(--c-primary);
+  color: #fff;
+  border-radius: 18px;
+  padding: var(--sp-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-card h3 { color: #fff; font-size: 1.1rem; margin-bottom: var(--sp-md); }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-sm);
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  padding: var(--sp-sm);
+  text-align: center;
+}
+
+.stat b { display: block; font-size: 1.6rem; font-family: var(--f-display); color: var(--c-accent); }
+.stat span { font-size: var(--fs-xs); opacity: 0.85; }
+
+/* ---------- 7. KARTU (konsistensi) ---------- */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-md);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-md);
+}
+
+.card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+.card-icon {
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  background: #eef4fa;
+  color: var(--c-primary);
+  border-radius: 10px;
+  font-size: 1.3rem;
+  margin-bottom: var(--sp-sm);
+}
+
+.card h3 { font-size: var(--fs-h3); margin-bottom: var(--sp-xs); }
+.card p { color: var(--c-text-muted); font-size: var(--fs-sm); }
+
+/* ---------- 8. BANNER CTA ---------- */
+.cta-banner {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
+  border-radius: 18px;
+  padding: var(--sp-xl);
+  text-align: center;
+  color: #fff;
+}
+
+.cta-banner h2 { color: #fff; font-size: var(--fs-h2); margin-bottom: var(--sp-xs); }
+.cta-banner p { opacity: 0.85; max-width: 52ch; margin: 0 auto var(--sp-md); }
+
+/* ---------- 9. HALAMAN PROFIL ---------- */
+.page-hero {
+  background: linear-gradient(160deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
+  color: #fff;
+  padding-block: var(--sp-xl);
+}
+
+.page-hero h1 { color: #fff; font-size: var(--fs-h2); margin-bottom: var(--sp-xs); }
+.page-hero p { opacity: 0.85; max-width: 60ch; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-xl);
+  align-items: start;
+}
+
+.about-grid h2 { font-size: var(--fs-h2); margin-bottom: var(--sp-sm); }
+.about-grid p { color: var(--c-text-muted); margin-bottom: var(--sp-sm); }
+
+.vision-box {
+  background: var(--c-surface);
+  border-left: 5px solid var(--c-accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: var(--sp-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.vision-box h3 { margin-bottom: var(--sp-xs); }
+.vision-box p, .vision-box li { color: var(--c-text-muted); font-size: var(--fs-sm); }
+.vision-box ul { padding-left: 1.2rem; }
+.vision-box li { margin-bottom: 6px; }
+
+.timeline { list-style: none; position: relative; padding-left: var(--sp-lg); }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px; top: 6px; bottom: 6px;
+  width: 2px; background: var(--c-border);
+}
+.timeline li { position: relative; padding-bottom: var(--sp-md); }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--sp-lg) + 2px);
+  top: 8px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  border: 3px solid var(--c-bg);
+}
+.timeline b { color: var(--c-primary); font-family: var(--f-display); }
+.timeline p { color: var(--c-text-muted); font-size: var(--fs-sm); }
+
+.team-card { text-align: center; }
+.team-avatar {
+  width: 76px; height: 76px;
+  margin: 0 auto var(--sp-sm);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: #eef4fa;
+  color: var(--c-primary);
+  font-size: 1.6rem;
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+.team-card h3 { font-size: 1rem; }
+.team-card span { font-size: var(--fs-xs); color: var(--c-accent-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.team-card p { margin-top: var(--sp-xs); }
+
+/* ---------- 10. KOLEKSI BUKU (halaman utama) ---------- */
+.toolbar {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: var(--sp-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--sp-lg);
+  display: grid;
+  gap: var(--sp-sm);
+}
+
+.search-box { position: relative; }
+.search-box input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 2px solid var(--c-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: var(--f-body);
+  background: var(--c-bg);
+  transition: border-color 0.2s;
+}
+.search-box input:focus { border-color: var(--c-primary); outline: none; }
+
+.filters { display: flex; flex-wrap: wrap; gap: var(--sp-xs); align-items: center; }
+.filters label { font-size: var(--fs-sm); font-weight: 700; color: var(--c-text-muted); }
+
+.chip {
+  border: 1.5px solid var(--c-border);
+  background: var(--c-bg);
+  color: var(--c-text);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  min-height: 38px;
+}
+.chip:hover { border-color: var(--c-primary); color: var(--c-primary); }
+.chip.active {
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+  color: #fff;
+}
+
+.result-info {
+  font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+  margin-bottom: var(--sp-sm);
+}
+.result-info b { color: var(--c-primary); }
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--sp-md);
+}
+
+.book-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.book-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+/* Sampul buku: blok warna bersih dengan punggung buku di sisi kiri */
+.book-cover {
+  height: 150px;
+  position: relative;
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.22) 0,
+    rgba(0, 0, 0, 0.22) 12px,
+    rgba(255, 255, 255, 0.12) 12px,
+    rgba(255, 255, 255, 0.12) 14px,
+    transparent 14px
+  );
+}
+
+.book-body { padding: var(--sp-sm); display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.book-body h3 { font-size: 1rem; }
+.book-author { font-size: var(--fs-sm); color: var(--c-text-muted); }
+
+.book-tag {
+  align-self: flex-start;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eef4fa;
+  color: var(--c-primary);
+}
+
+.book-meta {
+  margin-top: auto;
+  padding-top: var(--sp-xs);
+  border-top: 1px dashed var(--c-border);
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+}
+
+.status-available { color: var(--c-success); font-weight: 700; }
+.status-borrowed { color: #c0392b; font-weight: 700; }
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--sp-xl);
+  color: var(--c-text-muted);
+  background: var(--c-surface);
+  border: 1.5px dashed var(--c-border);
+  border-radius: var(--radius);
+}
+.empty-state strong { display: block; color: var(--c-text); font-size: 1.05rem; }
+
+/* ---------- 11. FOOTER (konsistensi) ---------- */
+.site-footer {
+  background: var(--c-primary-dark);
+  color: rgba(255, 255, 255, 0.82);
+  padding-block: var(--sp-lg);
+  margin-top: var(--sp-xxl);
+  font-size: var(--fs-sm);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-md);
+}
+
+.site-footer h4 { color: #fff; font-size: 1rem; margin-bottom: var(--sp-xs); }
+.site-footer p { line-height: 1.8; }
+.site-footer ul { list-style: none; }
+.site-footer li { margin-bottom: 8px; }
+.site-footer a { color: rgba(255, 255, 255, 0.82); }
+.site-footer a:hover { color: var(--c-accent); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: var(--sp-sm);
+  text-align: center;
+  font-size: var(--fs-xs);
+  opacity: 0.75;
+}
+
+/* ---------- 12. RESPONSIF (ergonomis) ---------- */
+@media (max-width: 900px) {
+  .hero-grid, .about-grid { grid-template-columns: 1fr; }
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .section { padding-block: var(--sp-xl); }
+  .nav-links {
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--c-surface);
+    border-bottom: 1px solid var(--c-border);
+    padding: var(--sp-sm) var(--sp-md);
+    display: none;
+    box-shadow: var(--shadow-md);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 12px 0; min-height: 44px; }
+  .nav-links a.active::after { display: none; }
+  .nav-links a.active { color: var(--c-accent-dark); }
+  .nav-toggle { display: block; }
+
+  .grid-3, .grid-4, .footer-grid { grid-template-columns: 1fr; }
+  .hero-actions .btn { width: 100%; }
+}
+
+/* Aksesibilitas: hormati preferensi kurang gerak */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto; }
+}

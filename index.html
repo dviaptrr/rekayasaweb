@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda — Perpustakaan Nusantara</title>
+  <meta name="description" content="Perpustakaan Nusantara: layanan peminjaman buku, koleksi digital, dan ruang baca untuk pelajar dan masyarakat.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER (konsisten di semua halaman) ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-icon" aria-hidden="true">📚</span>
+        Perpustakaan Nusantara
+      </a>
+
+      <button class="nav-toggle" aria-label="Buka menu navigasi" aria-expanded="false">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" aria-current="page">Beranda</a></li>
+        <li><a href="profil.html">Profil</a></li>
+        <li><a href="koleksi.html">Koleksi Buku</a></li>
+        <li><a href="koleksi.html" class="btn btn--accent" style="padding:0.5rem 1.1rem;">Pinjam Buku</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== HERO: fokus pada satu pesan utama ===== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="kicker">Perpustakaan Digital</span>
+          <h1>Membaca Membangun <em>Masa Depan</em></h1>
+          <p>
+            Jelajahi lebih dari 12.000 judul buku, akses koleksi digital, dan
+            nikmati ruang baca yang nyaman — gratis untuk seluruh pelajar dan
+            masyarakat umum.
+          </p>
+          <div class="hero-actions">
+            <a href="koleksi.html" class="btn btn--primary">Lihat Koleksi Buku →</a>
+            <a href="profil.html" class="btn btn--ghost">Tentang Kami</a>
+          </div>
+        </div>
+
+        <!-- Kartu statistik: keseimbangan visual dengan blok teks -->
+        <aside class="hero-card">
+          <h3>📊 Perpustakaan dalam Angka</h3>
+          <div class="hero-stats">
+            <div class="stat"><b>12.480</b><span>Judul Buku</span></div>
+            <div class="stat"><b>3.200</b><span>Anggota Aktif</span></div>
+            <div class="stat"><b>24</b><span>Ruang Baca</span></div>
+            <div class="stat"><b>7</b><span>Hari / Minggu</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== LAYANAN ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="kicker">Layanan Kami</span>
+          <h2>Semua yang Anda Butuhkan untuk Membaca</h2>
+          <p>Layanan dirancang sederhana, cepat, dan mudah diakses oleh semua usia.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📖</div>
+            <h3>Peminjaman Buku</h3>
+            <p>Pinjam hingga 5 buku selama 14 hari. Perpanjang langsung dari akun Anda tanpa antre.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">💻</div>
+            <h3>Koleksi Digital</h3>
+            <p>Baca e-book dan jurnal secara daring kapan saja, tersedia untuk 2.000+ judul digital.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🧑‍🤝‍🧑</div>
+            <h3>Ruang Diskusi</h3>
+            <p>24 ruang baca kelompok yang dapat dipesan gratis untuk tugas dan kegiatan komunitas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KOLEKSI UNGGULAN ===== -->
+    <section class="section section--tight" style="background:#fff; border-block:1px solid var(--c-border);">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Pilihan Pekan Ini</span>
+          <h2>Koleksi Unggulan</h2>
+          <p>Buku paling banyak dipinjam oleh anggota perpustakaan.</p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🌱</div>
+            <h3>Laskar Pelangi</h3>
+            <p>Andrea Hirata · Fiksi</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⚛️</div>
+            <h3>Sapiens</h3>
+            <p>Yuval Noah Harari · Sejarah</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🤖</div>
+            <h3>Artificial Intelligence</h3>
+            <p>Stuart Russell · Teknologi</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🕌</div>
+            <h3>This Earth of Ours</h3>
+            <p>Pramoedya Ananta Toer · Sejarah</p>
+          </article>
+        </div>
+
+        <div style="text-align:center; margin-top:var(--sp-lg);">
+          <a href="koleksi.html" class="btn btn--primary">Jelajahi Semua Koleksi →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner">
+          <h2>Menjadi Anggota Itu Gratis</h2>
+          <p>Daftarkan diri Anda hari ini dan nikmati akses penuh ke seluruh koleksi fisik maupun digital perpustakaan.</p>
+          <a href="profil.html" class="btn btn--accent">Daftar Sekarang</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>📚 Perpustakaan Nusantara</h4>
+          <p>Jl. Merdeka No. 12, Jakarta Pusat<br>Telepon: (021) 555-0123<br>Buka setiap hari, 08.00 – 20.00 WIB</p>
+        </div>
+        <div>
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="profil.html">Profil</a></li>
+            <li><a href="koleksi.html">Koleksi Buku</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Layanan</h4>
+          <ul>
+            <li><a href="koleksi.html">Peminjaman</a></li>
+            <li><a href="koleksi.html">Koleksi Digital</a></li>
+            <li><a href="profil.html">Ruang Diskusi</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Perpustakaan Nusantara · Prototype Website — Prinsip Web Application Design
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koleksi Buku — Perpustakaan Nusantara</title>
+  <meta name="description" content="Cari dan jelajahi koleksi buku Perpustakaan Nusantara berdasarkan judul, penulis, dan kategori.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER (konsisten) ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-icon" aria-hidden="true">📚</span>
+        Perpustakaan Nusantara
+      </a>
+
+      <button class="nav-toggle" aria-label="Buka menu navigasi" aria-expanded="false">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="profil.html">Profil</a></li>
+        <li><a href="koleksi.html" class="active" aria-current="page">Koleksi Buku</a></li>
+        <li><a href="koleksi.html" class="btn btn--accent" style="padding:0.5rem 1.1rem;">Pinjam Buku</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="kicker" style="color:var(--c-accent);">Halaman Utama</span>
+        <h1>Koleksi Buku</h1>
+        <p>Cari buku berdasarkan judul, penulis, atau kategori. Klik chip kategori untuk menyaring hasil.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+
+        <!-- ===== TOOLBAR: pencarian + filter (fokus pada satu tugas) ===== -->
+        <div class="toolbar">
+          <div class="search-box">
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Cari judul atau nama penulis…"
+              aria-label="Cari buku berdasarkan judul atau penulis"
+              autocomplete="off">
+          </div>
+
+          <div class="filters" role="group" aria-label="Filter kategori buku">
+            <label>Kategori:</label>
+            <button class="chip active" data-category="semua">Semua</button>
+            <button class="chip" data-category="fiksi">Fiksi</button>
+            <button class="chip" data-category="sejarah">Sejarah</button>
+            <button class="chip" data-category="teknologi">Teknologi</button>
+            <button class="chip" data-category="sains">Sains</button>
+            <button class="chip" data-category="anak">Anak</button>
+          </div>
+        </div>
+
+        <p class="result-info" aria-live="polite">
+          Menampilkan <b id="resultCount">0</b> judul dari <b id="totalCount">0</b> koleksi
+        </p>
+
+        <!-- ===== GRID BUKU (dirender oleh JavaScript) ===== -->
+        <div class="book-grid" id="bookGrid"></div>
+
+        <div class="empty-state" id="emptyState" hidden>
+          <strong>Buku tidak ditemukan</strong>
+          <p>Coba kata kunci lain atau pilih kategori "Semua".</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>📚 Perpustakaan Nusantara</h4>
+          <p>Jl. Merdeka No. 12, Jakarta Pusat<br>Telepon: (021) 555-0123<br>Buka setiap hari, 08.00 – 20.00 WIB</p>
+        </div>
+        <div>
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="profil.html">Profil</a></li>
+            <li><a href="koleksi.html">Koleksi Buku</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Layanan</h4>
+          <ul>
+            <li><a href="koleksi.html">Peminjaman</a></li>
+            <li><a href="koleksi.html">Koleksi Digital</a></li>
+            <li><a href="profil.html">Ruang Diskusi</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Perpustakaan Nusantara · Prototype Website — Prinsip Web Application Design
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/koleksi.js"></script>
+</body>
+</html>
