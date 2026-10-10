@@ -50,10 +50,13 @@ function render() {
       (b, i) => `
       <article class="book-card reveal" style="--i:${i}">
         <div class="book-cover" style="--cover:${b.cover}">
-          <div class="book-3d" role="img" aria-label="Ikon buku 3D ${b.title}">
+          <div class="book-3d" role="img" aria-label="Sampul buku 3D ${b.title} karya ${b.author}">
             <div class="book-3d__scene">
               <span class="book-3d__face book-3d__front">
-                <span class="mdi mdi-book-open-page-variant" aria-hidden="true"></span>
+                <span class="book-3d__title">${b.title}</span>
+                <span class="book-3d__rule" aria-hidden="true"></span>
+                <span class="book-3d__author">${b.author}</span>
+                <span class="book-3d__mono" aria-hidden="true">DP</span>
               </span>
               <span class="book-3d__face book-3d__spine"></span>
               <span class="book-3d__face book-3d__pages"></span>
