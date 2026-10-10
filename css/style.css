@@ -1,5 +1,5 @@
 /* ============================================================
-   PERPUSTAKAAN NUSANTARA — Design System
+   PERPUSTAKAAN DIVIA PUTRI — Design System
    Menerapkan prinsip: Konsisten, Kontras, Keseimbangan,
    Ruang Kosong (White Space), Simple, Fokus, Semiotik, Ergonomis
    ============================================================ */
@@ -320,7 +320,7 @@ h1, h2, h3, h4 {
   margin-bottom: var(--sp-sm);
 }
 
-/* ---- Panggung buku: sampul 3D berdiri di atas rak (beranda & koleksi) ---- */
+/* ---- Panggung buku: latar lembut tempat buku 3D berdiri (beranda & koleksi) ---- */
 .card-cover,
 .book-cover {
   position: relative;
@@ -330,27 +330,12 @@ h1, h2, h3, h4 {
   padding: 18px 10px 26px;
   background:
     radial-gradient(120% 85% at 50% 8%, #ffffff 0%, rgba(255, 255, 255, 0) 58%),
-    linear-gradient(180deg, #fdf6f9 0%, #f5e8ef 100%);
+    linear-gradient(180deg, #ffffff 0%, var(--c-tint) 100%);
 }
 .card-cover {
   height: 240px;
   border-radius: 10px;
   margin-bottom: var(--sp-sm);
-}
-
-/* Alas/bayangan buku di lantai rak */
-.card-cover::after,
-.book-cover::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 16px;
-  width: 60%;
-  height: 16px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(43, 20, 34, 0.22), rgba(43, 20, 34, 0));
-  transition: width 0.35s ease, opacity 0.35s ease;
 }
 
 /* Kilauan halaman saat hover */
@@ -369,29 +354,123 @@ h1, h2, h3, h4 {
   transform: translateX(-160%) skewX(-18deg);
 }
 
-.card-cover img,
-.book-cover img {
+/* ==========================================================
+   IKON BUKU 3D (murni CSS — tanpa gambar)
+   Satu kotak buku yang terdiri dari: sampul depan,
+   punggung (kiri), tumpukan halaman (kanan & atas),
+   lalu diputar memakai transform 3D + perspective.
+   ========================================================== */
+.book-3d {
+  --bw: 104px; /* lebar sampul */
+  --bh: 142px; /* tinggi buku  */
+  --bt: 26px;  /* tebal buku   */
+
   position: relative;
-  z-index: 2;
-  height: 100%;
-  width: auto;
-  max-width: 84%;
-  object-fit: contain;
-  border-radius: 3px;
-  filter: drop-shadow(0 10px 14px rgba(43, 20, 34, 0.28));
-  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1), filter 0.4s ease;
+  z-index: 1;
+  width: var(--bw);
+  height: var(--bh);
+  perspective: 900px; /* "kamera" 3D untuk seluruh isi buku */
+  perspective-origin: 50% 45%;
 }
 
-/* Hover: buku terangkat & sedikit miring, bayangan melebar */
-.card:hover .card-cover img,
-.book-card:hover .book-cover img {
-  transform: translateY(-10px) rotate(-2deg);
-  filter: drop-shadow(0 20px 22px rgba(43, 20, 34, 0.34));
+/* Bayangan buku di atas panggung */
+.book-3d::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 132px;
+  height: 24px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(43, 20, 34, 0.34), rgba(43, 20, 34, 0));
+  transition: width 0.4s ease, opacity 0.4s ease;
 }
-.card:hover .card-cover::after,
-.book-card:hover .book-cover::after {
-  width: 50%;
-  opacity: 0.75;
+
+/* Semua sisi buku hidup di dalam satu ruang 3D */
+.book-3d__scene {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(-14deg) rotateY(-32deg);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.book-3d__face { position: absolute; }
+
+/* --- Sampul depan (sisi yang menghadap pembaca) --- */
+.book-3d__front {
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform: translateZ(calc(var(--bt) / 2));
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 46%),
+    var(--cover, var(--c-primary));
+  border-radius: 4px 8px 8px 4px;
+  /* bayangan tipis di dekat punggung buku (lipatan sampul) */
+  box-shadow: inset 7px 0 10px -8px rgba(0, 0, 0, 0.6);
+}
+
+/* Bingkai tipis + ikon buku pada sampul depan */
+.book-3d__front::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 4px;
+}
+.book-3d__front .mdi {
+  font-size: 1.9rem;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Punggung buku (sisi kiri, warna lebih gelap) --- */
+.book-3d__spine {
+  top: 0;
+  left: calc(var(--bt) / -2);
+  width: var(--bt);
+  height: 100%;
+  transform: rotateY(-90deg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0.34)),
+    var(--cover, var(--c-primary));
+}
+
+/* --- Tumpukan halaman (sisi kanan) --- */
+.book-3d__pages {
+  top: 0;
+  left: calc(100% - var(--bt) / 2);
+  width: var(--bt);
+  height: 100%;
+  transform: rotateY(90deg);
+  background:
+    repeating-linear-gradient(90deg, rgba(90, 70, 45, 0.18) 0 1px, rgba(90, 70, 45, 0) 1px 4px),
+    linear-gradient(90deg, #fdfaf2 0%, #f3ead6 60%, #e2d6bd 100%);
+}
+
+/* --- Tepi halaman (sisi atas) --- */
+.book-3d__top {
+  top: calc(var(--bt) / -2);
+  left: 0;
+  width: 100%;
+  height: var(--bt);
+  transform: rotateX(90deg);
+  background:
+    repeating-linear-gradient(0deg, rgba(90, 70, 45, 0.18) 0 1px, rgba(90, 70, 45, 0) 1px 4px),
+    linear-gradient(0deg, #fdfaf2 0%, #f3ead6 60%, #e2d6bd 100%);
+}
+
+/* Hover: buku terangkat & sedikit berputar, bayangan mengecil */
+.card:hover .book-3d__scene,
+.book-card:hover .book-3d__scene {
+  transform: translateY(-8px) rotateX(-8deg) rotateY(-22deg);
+}
+.card:hover .book-3d::before,
+.book-card:hover .book-3d::before {
+  width: 112px;
+  opacity: 0.7;
 }
 .card:hover .card-cover::before,
 .book-card:hover .book-cover::before {
@@ -555,7 +634,7 @@ h1, h2, h3, h4 {
 }
 .book-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
-/* Sampul di halaman koleksi: panggung buku (gaya dasar sama dengan .card-cover) */
+/* Sampul di halaman koleksi: panggung buku 3D (gaya dasar sama dengan .card-cover) */
 .book-cover {
   height: 215px;
   border-bottom: 1px solid var(--c-border);
