@@ -6,21 +6,24 @@
 
 /* ---------- 1. KONSEN: Design Tokens (konsistensi) ---------- */
 :root {
-  /* Warna */
-  --c-primary: #1f4e79;
-  --c-primary-dark: #163a5b;
-  --c-accent: #e8a33d;
-  --c-accent-dark: #c9861f;
+  /* Warna - 3 kombinasi dominan pink: primer (pink), sekunder (plum), aksen (emas) */
+  --c-primary: #d6336c;
+  --c-primary-dark: #a3184a;
+  --c-secondary: #7b2c57;
+  --c-secondary-dark: #5e1f42;
+  --c-accent: #ffc93c;
+  --c-accent-dark: #e0a800;
+  --c-tint: #fdeaf1;
   --c-bg: #faf9f6;
   --c-surface: #ffffff;
   --c-text: #22303f;
   --c-text-muted: #5c6b7a;
   --c-border: #e3e0d8;
-  --c-success: #2e7d5b;
+  --c-success: #2e8b57;
 
   /* Tipografi (skala konsisten) */
-  --f-display: "Georgia", "Times New Roman", serif;
-  --f-body: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-display: "Poppins", "Segoe UI", Arial, sans-serif;
+  --f-body: "Poppins", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --fs-hero: clamp(2rem, 5vw, 3.25rem);
   --fs-h2: clamp(1.5rem, 3vw, 2rem);
   --fs-h3: 1.15rem;
@@ -37,8 +40,8 @@
   --sp-xxl: 6rem;
 
   --radius: 10px;
-  --shadow-sm: 0 1px 3px rgba(31, 78, 121, 0.08);
-  --shadow-md: 0 6px 20px rgba(31, 78, 121, 0.12);
+  --shadow-sm: 0 1px 3px rgba(214, 51, 108, 0.08);
+  --shadow-md: 0 6px 20px rgba(214, 51, 108, 0.14);
   --max-w: 1140px;
 }
 
@@ -58,6 +61,13 @@ body {
 
 img { max-width: 100%; display: block; }
 a { color: var(--c-primary); text-decoration: none; }
+
+/* Ikon MDI: selaraskan dengan baris teks */
+.mdi { vertical-align: -0.125em; }
+.nav-toggle .mdi { font-size: 1.5rem; }
+.hero-card h3 .mdi { color: var(--c-accent); margin-right: 8px; }
+.vision-box h3 .mdi { color: var(--c-secondary); margin-right: 8px; }
+.footer-contact-ico.mdi { color: var(--c-accent); font-size: 1.05rem; }
 
 h1, h2, h3, h4 {
   font-family: var(--f-display);
@@ -89,7 +99,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--c-accent-dark);
+  color: var(--c-secondary);
   margin-bottom: var(--sp-xs);
 }
 
@@ -198,7 +208,7 @@ h1, h2, h3, h4 {
 .btn--primary:hover { background: var(--c-primary-dark); }
 
 .btn--accent { background: var(--c-accent); color: var(--c-primary-dark); }
-.btn--accent:hover { background: var(--c-accent-dark); color: #fff; }
+.btn--accent:hover { background: var(--c-accent-dark); color: var(--c-primary-dark); }
 
 .btn--ghost {
   background: transparent;
@@ -216,8 +226,8 @@ h1, h2, h3, h4 {
 /* ---------- 6. HERO (fokus + komposisi) ---------- */
 .hero {
   background:
-    radial-gradient(circle at 85% 20%, rgba(232, 163, 61, 0.18), transparent 45%),
-    linear-gradient(160deg, #f4f8fc 0%, #faf9f6 60%);
+    radial-gradient(circle at 85% 20%, rgba(214, 51, 108, 0.16), transparent 45%),
+    linear-gradient(160deg, #fdf0f6 0%, #faf9f6 60%);
   padding-block: var(--sp-xxl);
 }
 
@@ -235,7 +245,7 @@ h1, h2, h3, h4 {
 
 .hero h1 em {
   font-style: normal;
-  color: var(--c-accent-dark);
+  color: var(--c-secondary-dark);
   border-bottom: 4px solid var(--c-accent);
 }
 
@@ -303,11 +313,89 @@ h1, h2, h3, h4 {
 .card-icon {
   width: 46px; height: 46px;
   display: grid; place-items: center;
-  background: #eef4fa;
+  background: var(--c-tint);
   color: var(--c-primary);
   border-radius: 10px;
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   margin-bottom: var(--sp-sm);
+}
+
+/* ---- Panggung buku: sampul 3D berdiri di atas rak (beranda & koleksi) ---- */
+.card-cover,
+.book-cover {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 18px 10px 26px;
+  background:
+    radial-gradient(120% 85% at 50% 8%, #ffffff 0%, rgba(255, 255, 255, 0) 58%),
+    linear-gradient(180deg, #fdf6f9 0%, #f5e8ef 100%);
+}
+.card-cover {
+  height: 240px;
+  border-radius: 10px;
+  margin-bottom: var(--sp-sm);
+}
+
+/* Alas/bayangan buku di lantai rak */
+.card-cover::after,
+.book-cover::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  width: 60%;
+  height: 16px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(43, 20, 34, 0.22), rgba(43, 20, 34, 0));
+  transition: width 0.35s ease, opacity 0.35s ease;
+}
+
+/* Kilauan halaman saat hover */
+.card-cover::before,
+.book-cover::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 38%;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  transform: translateX(-160%) skewX(-18deg);
+}
+
+.card-cover img,
+.book-cover img {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: auto;
+  max-width: 84%;
+  object-fit: contain;
+  border-radius: 3px;
+  filter: drop-shadow(0 10px 14px rgba(43, 20, 34, 0.28));
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1), filter 0.4s ease;
+}
+
+/* Hover: buku terangkat & sedikit miring, bayangan melebar */
+.card:hover .card-cover img,
+.book-card:hover .book-cover img {
+  transform: translateY(-10px) rotate(-2deg);
+  filter: drop-shadow(0 20px 22px rgba(43, 20, 34, 0.34));
+}
+.card:hover .card-cover::after,
+.book-card:hover .book-cover::after {
+  width: 50%;
+  opacity: 0.75;
+}
+.card:hover .card-cover::before,
+.book-card:hover .book-cover::before {
+  animation: page-shine 0.9s ease;
 }
 
 .card h3 { font-size: var(--fs-h3); margin-bottom: var(--sp-xs); }
@@ -385,14 +473,14 @@ h1, h2, h3, h4 {
   margin: 0 auto var(--sp-sm);
   border-radius: 50%;
   display: grid; place-items: center;
-  background: #eef4fa;
+  background: var(--c-tint);
   color: var(--c-primary);
   font-size: 1.6rem;
   font-family: var(--f-display);
   font-weight: 700;
 }
 .team-card h3 { font-size: 1rem; }
-.team-card span { font-size: var(--fs-xs); color: var(--c-accent-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.team-card span { font-size: var(--fs-xs); color: var(--c-secondary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
 .team-card p { margin-top: var(--sp-xs); }
 
 /* ---------- 10. KOLEKSI BUKU (halaman utama) ---------- */
@@ -467,18 +555,10 @@ h1, h2, h3, h4 {
 }
 .book-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
-/* Sampul buku: blok warna bersih dengan punggung buku di sisi kiri */
+/* Sampul di halaman koleksi: panggung buku (gaya dasar sama dengan .card-cover) */
 .book-cover {
-  height: 150px;
-  position: relative;
-  background-image: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.22) 0,
-    rgba(0, 0, 0, 0.22) 12px,
-    rgba(255, 255, 255, 0.12) 12px,
-    rgba(255, 255, 255, 0.12) 14px,
-    transparent 14px
-  );
+  height: 215px;
+  border-bottom: 1px solid var(--c-border);
 }
 
 .book-body { padding: var(--sp-sm); display: flex; flex-direction: column; gap: 6px; flex: 1; }
@@ -491,7 +571,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   padding: 3px 10px;
   border-radius: 999px;
-  background: #eef4fa;
+  background: var(--c-tint);
   color: var(--c-primary);
 }
 
@@ -506,7 +586,7 @@ h1, h2, h3, h4 {
 }
 
 .status-available { color: var(--c-success); font-weight: 700; }
-.status-borrowed { color: #c0392b; font-weight: 700; }
+.status-borrowed { color: var(--c-secondary); font-weight: 700; }
 
 .empty-state {
   grid-column: 1 / -1;
@@ -521,34 +601,111 @@ h1, h2, h3, h4 {
 
 /* ---------- 11. FOOTER (konsistensi) ---------- */
 .site-footer {
-  background: var(--c-primary-dark);
+  position: relative;
+  background:
+    radial-gradient(900px 320px at 8% -60%, rgba(255, 201, 60, 0.18), transparent 62%),
+    linear-gradient(180deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
   color: rgba(255, 255, 255, 0.82);
-  padding-block: var(--sp-lg);
+  padding-top: var(--sp-xl);
   margin-top: var(--sp-xxl);
   font-size: var(--fs-sm);
+  overflow: hidden;
+}
+
+/* garis aksen tipis di paling atas footer */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--c-accent-dark), var(--c-accent), var(--c-accent-dark));
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2.2fr 1fr 1fr 1.2fr;
   gap: var(--sp-lg);
+  padding-bottom: var(--sp-lg);
+}
+
+/* --- Blok merek --- */
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  margin-bottom: var(--sp-sm);
+}
+
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--f-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+}
+.footer-logo-text em { font-style: normal; color: var(--c-accent); }
+
+.footer-tagline {
+  max-width: 34ch;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: var(--sp-md);
 }
 
-.site-footer h4 { color: #fff; font-size: 1rem; margin-bottom: var(--sp-xs); }
-.site-footer p { line-height: 1.8; }
-.site-footer ul { list-style: none; }
-.site-footer li { margin-bottom: 8px; }
-.site-footer a { color: rgba(255, 255, 255, 0.82); }
-.site-footer a:hover { color: var(--c-accent); }
+.footer-contact { display: grid; gap: 10px; }
+.footer-contact li { display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
+.footer-contact-ico { flex: 0 0 auto; }
+.footer-contact a { color: rgba(255, 255, 255, 0.82); }
+.footer-contact a:hover { color: var(--c-accent); }
 
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding-top: var(--sp-sm);
-  text-align: center;
-  font-size: var(--fs-xs);
-  opacity: 0.75;
+/* --- Kolom tautan --- */
+.site-footer h4 {
+  position: relative;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  margin-bottom: var(--sp-sm);
 }
+.site-footer h4::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 30px; height: 3px;
+  border-radius: 2px;
+  background: var(--c-accent);
+}
+
+.site-footer ul { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.82);
+  transition: color 0.2s, transform 0.2s;
+}
+.footer-links a:hover { color: var(--c-accent); transform: translateX(4px); }
+
+/* --- Catatan kolom --- */
+.footer-note { line-height: 1.8; color: rgba(255, 255, 255, 0.72); }
+
+/* --- Baris bawah --- */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-block: var(--sp-md);
+  font-size: var(--fs-xs);
+  color: rgba(255, 255, 255, 0.68);
+}
+.footer-bottom-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-xs);
+}
+.footer-bottom-sep { color: var(--c-accent); }
 
 /* ---------- 12. RESPONSIF (ergonomis) ---------- */
 @media (max-width: 900px) {
@@ -582,7 +739,27 @@ h1, h2, h3, h4 {
   .hero-actions .btn { width: 100%; }
 }
 
+/* ---------- 13. ANIMASI TEMA PERPUSTAKAAN (halus & profesional) ---------- */
+@keyframes book-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes page-shine {
+  0%   { opacity: 0; transform: translateX(-160%) skewX(-18deg); }
+  25%  { opacity: 0.9; }
+  100% { opacity: 0; transform: translateX(220%) skewX(-18deg); }
+}
+
+/* Buku muncul berurutan saat masuk viewport (staggered reveal) */
+.js .reveal { opacity: 0; }
+.js .reveal.is-visible {
+  opacity: 1;
+  animation: book-rise 0.55s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
 /* Aksesibilitas: hormati preferensi kurang gerak */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; scroll-behavior: auto; }
+  .js .reveal { opacity: 1; }
 }

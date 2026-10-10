@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beranda — Perpustakaan Nusantara</title>
   <meta name="description" content="Perpustakaan Nusantara: layanan peminjaman buku, koleksi digital, dan ruang baca untuk pelajar dan masyarakat.">
+  <!-- Tandai bahwa JS aktif (agar animasi reveal hanya jalan saat JS tersedia) -->
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <!-- Ikon: Material Design Icons (MDI) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,11 +24,13 @@
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="brand">
-        <span class="brand-icon" aria-hidden="true">📚</span>
+        <span class="brand-icon mdi mdi-book-open-page-variant" aria-hidden="true"></span>
         Perpustakaan Nusantara
       </a>
 
-      <button class="nav-toggle" aria-label="Buka menu navigasi" aria-expanded="false">☰</button>
+      <button class="nav-toggle" aria-label="Buka menu navigasi" aria-expanded="false">
+        <span class="mdi mdi-menu" aria-hidden="true"></span>
+      </button>
 
       <ul class="nav-links">
         <li><a href="index.html" class="active" aria-current="page">Beranda</a></li>
@@ -48,7 +61,7 @@
 
         <!-- Kartu statistik: keseimbangan visual dengan blok teks -->
         <aside class="hero-card">
-          <h3>📊 Perpustakaan dalam Angka</h3>
+          <h3><i class="mdi mdi-chart-box-outline" aria-hidden="true"></i> Perpustakaan dalam Angka</h3>
           <div class="hero-stats">
             <div class="stat"><b>12.480</b><span>Judul Buku</span></div>
             <div class="stat"><b>3.200</b><span>Anggota Aktif</span></div>
@@ -70,19 +83,19 @@
 
         <div class="grid-3">
           <article class="card">
-            <div class="card-icon" aria-hidden="true">📖</div>
+            <div class="card-icon mdi mdi-book-open-variant" aria-hidden="true"></div>
             <h3>Peminjaman Buku</h3>
             <p>Pinjam hingga 5 buku selama 14 hari. Perpanjang langsung dari akun Anda tanpa antre.</p>
           </article>
 
           <article class="card">
-            <div class="card-icon" aria-hidden="true">💻</div>
+            <div class="card-icon mdi mdi-laptop" aria-hidden="true"></div>
             <h3>Koleksi Digital</h3>
             <p>Baca e-book dan jurnal secara daring kapan saja, tersedia untuk 2.000+ judul digital.</p>
           </article>
 
           <article class="card">
-            <div class="card-icon" aria-hidden="true">🧑‍🤝‍🧑</div>
+            <div class="card-icon mdi mdi-account-group" aria-hidden="true"></div>
             <h3>Ruang Diskusi</h3>
             <p>24 ruang baca kelompok yang dapat dipesan gratis untuk tugas dan kegiatan komunitas.</p>
           </article>
@@ -100,23 +113,31 @@
         </div>
 
         <div class="grid-4">
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🌱</div>
+          <article class="card reveal" style="--i:0">
+            <div class="card-cover">
+              <img src="assets/covers/laskar-pelangi.svg" alt="Sampul buku Laskar Pelangi karya Andrea Hirata" loading="lazy" width="300" height="420">
+            </div>
             <h3>Laskar Pelangi</h3>
             <p>Andrea Hirata · Fiksi</p>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">⚛️</div>
+          <article class="card reveal" style="--i:1">
+            <div class="card-cover">
+              <img src="assets/covers/sapiens.svg" alt="Sampul buku Sapiens karya Yuval Noah Harari" loading="lazy" width="300" height="420">
+            </div>
             <h3>Sapiens</h3>
             <p>Yuval Noah Harari · Sejarah</p>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🤖</div>
+          <article class="card reveal" style="--i:2">
+            <div class="card-cover">
+              <img src="assets/covers/artificial-intelligence.svg" alt="Sampul buku Artificial Intelligence karya Stuart Russell" loading="lazy" width="300" height="420">
+            </div>
             <h3>Artificial Intelligence</h3>
             <p>Stuart Russell · Teknologi</p>
           </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🕌</div>
+          <article class="card reveal" style="--i:3">
+            <div class="card-cover">
+              <img src="assets/covers/this-earth-of-ours.svg" alt="Sampul buku This Earth of Ours karya Pramoedya Ananta Toer" loading="lazy" width="300" height="420">
+            </div>
             <h3>This Earth of Ours</h3>
             <p>Pramoedya Ananta Toer · Sejarah</p>
           </article>
@@ -144,29 +165,51 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
-          <h4>📚 Perpustakaan Nusantara</h4>
-          <p>Jl. Merdeka No. 12, Jakarta Pusat<br>Telepon: (021) 555-0123<br>Buka setiap hari, 08.00 – 20.00 WIB</p>
+
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="footer-logo-text">Perpustakaan<em>Nusantara</em></span>
+          </a>
+          <p class="footer-tagline">Ruang baca modern untuk menumbuhkan literasi, imajinasi, dan cinta pengetahuan.</p>
+
+          <ul class="footer-contact">
+            <li><span class="footer-contact-ico mdi mdi-map-marker" aria-hidden="true"></span><span>Jl. Merdeka No. 12, Serang, Banten</span></li>
+            <li><span class="footer-contact-ico mdi mdi-phone" aria-hidden="true"></span><a href="tel:+622545550123">(0254) 555-0123</a></li>
+            <li><span class="footer-contact-ico mdi mdi-clock-outline" aria-hidden="true"></span><span>Buka setiap hari, 08.00 – 20.00 WIB</span></li>
+          </ul>
         </div>
-        <div>
+
+        <div class="footer-col">
           <h4>Navigasi</h4>
-          <ul>
+          <ul class="footer-links">
             <li><a href="index.html">Beranda</a></li>
             <li><a href="profil.html">Profil</a></li>
             <li><a href="koleksi.html">Koleksi Buku</a></li>
           </ul>
         </div>
-        <div>
+
+        <div class="footer-col">
           <h4>Layanan</h4>
-          <ul>
+          <ul class="footer-links">
             <li><a href="koleksi.html">Peminjaman</a></li>
             <li><a href="koleksi.html">Koleksi Digital</a></li>
             <li><a href="profil.html">Ruang Diskusi</a></li>
           </ul>
         </div>
+
+        <div class="footer-col">
+          <h4>Ikuti Kami</h4>
+          <p class="footer-note">Punya pertanyaan? Sapa kami di meja layanan atau kirim pesan lewat media sosial.</p>
+        </div>
+
       </div>
-      <div class="footer-bottom">
-        © 2026 Perpustakaan Nusantara · Prototype Website — Prinsip Web Application Design
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 Perpustakaan Nusantara</span>
+        <span class="footer-bottom-sep" aria-hidden="true">◆</span>
+        <span>Prototype Website — Prinsip Web Application Design</span>
       </div>
     </div>
   </footer>
